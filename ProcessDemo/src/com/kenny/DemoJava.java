@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Main {
+public class DemoJava {
 
     public static void main(String[] args) {
         Runtime rt = Runtime.getRuntime();
@@ -19,8 +19,9 @@ public class Main {
             Process convertToJavaClass = rt.exec("javac -encoding utf8 " + path);
             convertToJavaClass.waitFor();
 
+            path = System.getProperty("user.dir");
             // execuate java program => compare two lists wheather they are strictly identical
-            Process execuateJavaProgram = rt.exec("java -classpath d:/Test Test");
+            Process execuateJavaProgram = rt.exec("java -classpath " + path + " Test");
 
             // write input for java program
             BufferedWriter output = new BufferedWriter((new OutputStreamWriter(execuateJavaProgram.getOutputStream(), System.getProperty("sun.jnu.encoding"))));
